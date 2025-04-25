@@ -1,0 +1,100 @@
+/* Premium Chatbot Theme by Sangam Gupta */
+
+body {
+    background-color: #050505;
+    color: #F5F1E3;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background-color: #1B1B1B;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(27, 154, 170, 0.3);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #1B9AAA;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+  
+  .form-control {
+    background-color: #1B1B1B;
+    border: 1px solid #1B9AAA;
+    color: #FFFFFF;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 16px;
+  }
+  
+  .form-control:focus {
+    border-color: #1B9AAA;
+    box-shadow: 0 0 10px rgba(27, 154, 170, 0.5);
+    background-color: #262626;
+    color: #F5F1E3;
+  }
+  
+  button.btn-success {
+    background-color: #1B9AAA;
+    border: none;
+    padding: 12px 25px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 12px rgba(27, 154, 170, 0.4);
+  }
+  
+  button.btn-success:hover {
+    background-color: #157F92;
+    box-shadow: 0 6px 18px rgba(27, 154, 170, 0.6);
+  }
+  
+  #response {
+    margin-top: 30px;
+    background-color: #262626;
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 100px;
+    border-left: 4px solid #1B9AAA;
+    color: #FFFFFF;
+  }
+  
+  #response h3 {
+    color: #F5F1E3;
+    font-size: 1.4em;
+  }
+  
+  #response strong {
+    color: #DDDBCB;
+  }
+  
+  #response ul {
+    padding-left: 20px;
+  }
+  
+  #response li {
+    margin-bottom: 8px;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #050505;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #1B9AAA;
+    border-radius: 10px;
+  }
+  

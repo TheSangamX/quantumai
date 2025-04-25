@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuantumAI ChatBot</title>
+    <link rel="icon" type="image/png" href="favicon-32x32.png">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2>QuantumAI ChatBot</h2>
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          id="userInput"
+          placeholder="How can QuantumAI elevate your vision today?"
+        />
+      </div>
+      <button class="btn btn-success" onclick="sendMessage()">Ask QuantumAI!</button>
+      <div id="response"></div>
+    </div>
+
+    <script>
+      async function sendMessage() {
+        const input = document.getElementById("userInput").value;
+        const responseDiv = document.getElementById("response");
+        if (!input) {
+          responseDiv.innerHTML = "Please enter a message.";
+          return;
+        }
+        responseDiv.innerHTML = "QuantumAI is processing your request...";
+
+        // Disable button during processing
+        const button = document.querySelector("button");
+        button.disabled = true;
+
+        try {
+          const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+            method: "POST",
+            headers: {
+              Authorization: "Bearer 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", // Replace with your real API key
+              "HTTP-Referer": "https://www.sitename.com",
+              "X-Title": "SiteName",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                model: "deepseek/deepseek-chat-v3-0324", 
+              messages: [{ role: "user", content: input }],
+            }),
+          });
+
+          const data = await response.json();
+          
+          console.log("Raw API Response:", data);  // Log the raw response
+
+          // Check if the response structure matches the expected format
+          if (!data || !data.choices || !data.choices[0] || !data.choices[0].message) {
+            responseDiv.innerHTML = "No valid response from API. Check the response structure.";
+            return;
+          }
+
+          const markdownText = data.choices[0].message.content;
+          responseDiv.innerHTML = marked.parse(markdownText);
+        } catch (error) {
+          console.error("Error:", error); // Log the error for debugging
+          responseDiv.innerHTML = "Error: " + error.message;
+        }
+
+        // Re-enable button after response
+        button.disabled = false;
+        
+        // Clear input field
+        document.getElementById("userInput").value = "";
+      }
+
+      // Allow sending message on pressing "Enter"
+      document
+        .getElementById("userInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
+        });
+    </script>
+  </body>
+</html>
